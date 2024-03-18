@@ -45,12 +45,7 @@ jobs:
        
       # Run Lint
       - name: Lint code
-        run: |
-          cd starter/backend
-          pipenv shell
-          pipenv run lint
-          
-    # run: cd starter/backend && run pipenv shell && pipenv run lint 
+        run: cd starter/backend && pipenv run 'pipenv run which flake8'/lint
 
   test:
     runs-on: ubuntu-latest
