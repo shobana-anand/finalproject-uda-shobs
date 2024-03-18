@@ -10,7 +10,7 @@ on:
   pull_request:
     branches:
       - main
-      
+
   # Automatic trigger on push
   push:
     branches:
@@ -23,6 +23,10 @@ jobs:
     steps:
       # Check out the code from the repository.
       - uses: actions/checkout@v3
+
+      # Prepare Pipenv environment
+      - name: Install Python, pipenv and Pipfile packages
+        uses: kojoru/prepare-pipenv@v1
 
       # Install Dependencies
       - name: Install dependencies
@@ -38,6 +42,10 @@ jobs:
     steps:
       # Check out the code from the repository.
       - uses: actions/checkout@v3
+
+      # Prepare Pipenv environment
+      - name: Install Python, pipenv and Pipfile packages
+        uses: kojoru/prepare-pipenv@v1
 
       # Install Dependencies
       - name: Install dependencies
