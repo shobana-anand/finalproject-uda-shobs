@@ -45,7 +45,7 @@ jobs:
        
       # Run Lint
       - name: Lint code
-        run: cd starter/backend && pipenv run lint 
+        run: cd starter/backend && run pipenv shell && pipenv run lint 
 
   test:
     runs-on: ubuntu-latest
