@@ -38,6 +38,10 @@ jobs:
       # Install Dependencies
       - name: Install dependencies
         run: cd starter/backend && pipenv install 
+
+      # Install Flake8
+      - name: Install Flake8
+        run: pipenv install --dev flake8
        
       # Run Lint
       - name: Lint code
