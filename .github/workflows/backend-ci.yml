@@ -28,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10
+          python-version: 3.x
 
       - name: Install pipenv
         run: |
@@ -38,10 +38,14 @@ jobs:
       # Install Dependencies
       - name: Install dependencies
         run: cd starter/backend && pipenv install 
-       
+
+      # Install Flake8
+      - name: Install Flake8
+        run: pip install flake8
+
       # Run Lint
       - name: Lint code
-        run: pipenv run lint
+        run: cd starter/backend && pipenv run flake8
 
   test:
     runs-on: ubuntu-latest
