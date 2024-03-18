@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Install dependencies
-        run: npm install 
+        run: npm install --prefix starter/frontend
 
       - name: Lint code
         run: npm run lint -- --fix
