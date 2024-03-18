@@ -92,6 +92,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Build application
-        run: |
-          # 
-          docker build -t my-app -f starter/frontend/Dockerfile .
+        run: cd starter/frontend && docker build -t my-react-ts-app .
+          
