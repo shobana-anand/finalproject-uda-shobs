@@ -38,7 +38,7 @@ jobs:
         run: npm install --prefix starter/frontend
 
       - name: Lint code
-        run: npm run lint -- --fix
+        run: cd starter/frontend && npm run lint -- --fix
 
   test:
     runs-on: ubuntu-latest
