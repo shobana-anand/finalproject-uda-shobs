@@ -142,6 +142,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd starter/frontend/k8s
+          sed -i "s|image: frontend|image: $REGISTRY/frontend:$IMAGE_TAG|g" deployment.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml   
               
