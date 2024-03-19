@@ -12,9 +12,9 @@ on:
       - main
 
   # Automatic trigger on push
-  push:
-    branches:
-      - main    
+  #push:
+   # branches:
+   #   - main    
 
 jobs:
   lint:

@@ -92,6 +92,12 @@ jobs:
         node-version: [16.x]
 
     steps:
+
+      # Image Tag - git SHA of commit
+      - name: Set short git commit SHA
+        id: commit
+        uses: prompt/actions-commit-hash@v2 
+
       # Check out the code from the repository.
       - uses: actions/checkout@v3
 
@@ -125,7 +131,7 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ steps.commit.outputs.short }}
         run: |
           cd starter/frontend
           docker build \
@@ -139,7 +145,7 @@ jobs:
       - name: Deploy to Kubernetes
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ steps.commit.outputs.short }}
         run: |
           cd starter/frontend/k8s
           sed -i "s|image: frontend|image: $REGISTRY/frontend:$IMAGE_TAG|g" deployment.yaml
