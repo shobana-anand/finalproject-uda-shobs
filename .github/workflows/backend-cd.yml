@@ -112,7 +112,7 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-          ECR_REPO_URL: ${{ variables.ECR_REPO_URL_BACKEND }}
+          ECR_REPO_URL: ${{ vars.ECR_REPO_URL_BACKEND }}
         run: |
           cd starter/backend/k8s
           kustomize edit set image backend=$ECR_REPO_URL:$IMAGE_TAG
