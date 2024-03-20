@@ -9,12 +9,7 @@ on:
   # Automatic trigger on pull request events targeting the main branch
   pull_request:
     branches:
-      - main
-
-  # Automatic trigger on push
-  #push:
-   # branches:
-   #   - main    
+      - main  
 
 jobs:
   lint:
