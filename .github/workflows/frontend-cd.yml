@@ -14,6 +14,7 @@ env:
   REPOSITORY: frontend
   EKS_CLUSTER_NAME: cluster
   AWS_REGION: us-east-1
+  ECR_REPO_URL: 281690113173.dkr.ecr.us-east-1.amazonaws.com/frontend
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -138,9 +139,10 @@ jobs:
           IMAGE_TAG:  ${{ github.sha }}
         run: |
           cd starter/frontend/k8s
-          sed -i "s|image: frontend|image: $REGISTRY/frontend:$IMAGE_TAG|g" deployment.yaml
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml   
+          kustomize edit set image frontend=$ECR_REPO_URL:$IMAGE_TAG
+          
+          kustomize build | kubectl apply -f -
+
               
     
           
