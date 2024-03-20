@@ -130,9 +130,7 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG 
 
       - name: Update Kube Config
-        run: |
-         aws sts get-caller-identity
-         aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+        run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
 
       - name: Deploy to Kubernetes
         env:
@@ -140,7 +138,6 @@ jobs:
           IMAGE_TAG:  ${{ github.sha }}
         run: |
           cd starter/frontend/k8s
-          kubectl config view --minify
           sed -i "s|image: frontend|image: $REGISTRY/frontend:$IMAGE_TAG|g" deployment.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml   
