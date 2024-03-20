@@ -5,16 +5,11 @@ name: Frontend Continuous Deployment
 on:
   # Manual trigger using the workflow_dispatch event
   workflow_dispatch:
-      
-  # Automatic trigger on pull request events targeting the main branch
-  #pull_request:
-   # branches:
-    #  - main
 
   # Automatic trigger on push to main branch
-  #push:
-  #  branches:
-   #   - main
+  push:
+    branches:
+      - main
 env:
   REPOSITORY: frontend
   EKS_CLUSTER_NAME: cluster
@@ -92,11 +87,6 @@ jobs:
         node-version: [16.x]
 
     steps:
-
-      # Image Tag - git SHA of commit
-      #- name: Set short git commit SHA
-       # id: commit
-       # uses: prompt/actions-commit-hash@v2 
 
       # Check out the code from the repository.
       - uses: actions/checkout@v3
